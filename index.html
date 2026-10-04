@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Docker Student Hub</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, #243b55, transparent 35%),
+        radial-gradient(circle at bottom right, #1e3c72, transparent 35%),
+        #0b1020;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 25px;
+      padding: 50px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    .docker-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .subtitle {
+      color: #b8c2d9;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 35px;
+    }
+
+    .highlight {
+      color: #6ee7ff;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .info {
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 15px;
+      padding: 20px;
+    }
+
+    .label {
+      color: #8d9ab5;
+      font-size: 13px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .value {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .status {
+      margin-top: 30px;
+      padding: 15px 20px;
+      border-radius: 12px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      color: #86efac;
+    }
+
+    .footer {
+      margin-top: 25px;
+      color: #78849d;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .card {
+        padding: 30px;
+      }
+
+      h1 {
+        font-size: 35px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="badge">
+      🐳 Docker Hands-On Project
+    </div>
+
+    <div class="card">
+
+      <div class="docker-icon">
+        🐳
+      </div>
+
+      <h1>
+        Welcome, <span class="highlight" id="studentName">Student</span>!
+      </h1>
+
+      <p class="subtitle">
+        You are looking at a web application running
+        inside a <strong>Docker container</strong>.
+        <br />
+        Same application. Different environment. 🚀
+      </p>
+
+      <div class="info-grid">
+
+        <div class="info">
+          <div class="label">Student</div>
+          <div class="value" id="student">Loading...</div>
+        </div>
+
+        <div class="info">
+          <div class="label">Branch</div>
+          <div class="value" id="branch">Loading...</div>
+        </div>
+
+        <div class="info">
+          <div class="label">Environment</div>
+          <div class="value" id="environment">Loading...</div>
+        </div>
+
+      </div>
+
+      <div class="status">
+        ● Container is running successfully
+      </div>
+
+      <div class="footer">
+        Built with Node.js + Express + Docker
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    fetch("/config")
+      .then(response => response.json())
+      .then(data => {
+
+        document.getElementById("studentName").textContent =
+          data.student;
+
+        document.getElementById("student").textContent =
+          data.student;
+
+        document.getElementById("branch").textContent =
+          data.branch;
+
+        document.getElementById("environment").textContent =
+          data.environment;
+
+      });
+  </script>
+
+</body>
+
+</html>

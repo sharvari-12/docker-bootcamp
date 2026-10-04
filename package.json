@@ -1,0 +1,12 @@
+{
+  "name": "docker-student-hub",
+  "version": "1.0.0",
+  "description": "Simple single-page Docker demo project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
